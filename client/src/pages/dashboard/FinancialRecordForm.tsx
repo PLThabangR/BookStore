@@ -62,7 +62,7 @@ setPaymentMethod("")
         <Form.Control type="number" placeholder="Amount" required value={amount} onChange={(e)=>setAmount(e.target.value)}/>
       </FloatingLabel>
       
-      <Form.Select aria-label="Default select example" value={category} onChange={(e)=>setCategory(e.target.value) defaultValue={}>
+      <Form.Select aria-label="Default select example" value={category} onChange={(e)=>setCategory(e.target.value)}>
       <option>Category</option>
       <option value="Food">Food</option>
       <option value="Rent">Rent</option>
@@ -73,7 +73,7 @@ setPaymentMethod("")
     </Form.Select>
     <br></br>
    
-    <Form.Select aria-label="Default select example"value={paymentMethod} onChange={(e)=>setPaymentMethod(e.target.value)} defaultValue={"Cash"}>
+    <Form.Select aria-label="Default select example"value={paymentMethod} onChange={(e)=>setPaymentMethod(e.target.value)}>
       <option>Payment Method</option>
       <option value="Food">Credit Card</option>
       <option value="Rent">Cash</option>

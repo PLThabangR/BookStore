@@ -3,9 +3,19 @@ import FinancialRecordModel from "../Model/FinancialRecord";
 
 
 
-export const addRecord =async()=>{
+export const addRecord =async(req:Request,res:Response)=>{
  
+    try{
+        //Get the new record from the body URL
+        const newRecord= req.body
+        //Create new record in the database
+        const record = await FinancialRecordModel.create({newRecord})
+        //Give user responds
+        res.status(200).send("records")
 
+    }catch(err){
+        res.status(500).send(err)
+    }
 
 }
 
