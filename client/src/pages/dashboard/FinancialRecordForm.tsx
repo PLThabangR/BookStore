@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { FloatingLabel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useFinancialRecords } from '../../contexts/financialRecord';
 
 
 
@@ -13,6 +14,9 @@ const FinancialRecordForm = () => {
   const [category,setCategory]=useState<string>('')
   const [paymentMethod,setPaymentMethod]=useState<string>('')
 
+  //Call the custom hook
+  const {addRecord}= useFinancialRecords()
+
   //USe the clerk hook to get user id
   const {user} = useUser();
   
@@ -22,7 +26,7 @@ const FinancialRecordForm = () => {
     event.preventDefault()
     //Data
     const newRecord={
-      userId:user?.id,
+      userId:user?.id ?? "", //If this Id is empty we put a empty string
       date: new Date(),
       description: description,
       //Convert amount to a float
@@ -32,7 +36,7 @@ const FinancialRecordForm = () => {
     }
     console.log(newRecord)
     //pass info to the database by calling addRecord function
-    //AddRecord(newRecord)
+    addRecord(newRecord)
     clearForm()
 }
 

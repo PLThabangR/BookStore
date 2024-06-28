@@ -1,4 +1,4 @@
-import React, { Children, createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 //Create userRecord interface
 interface FinancialRecord{
@@ -19,24 +19,45 @@ interface FinancialRecordContextType{
 }
 
 
-//Create context
+//Create context based on Financial Record type
 export const FinancialRecordContext = createContext<FinancialRecordContextType| undefined>(undefined);
 
-//We are now creating a component that will our provider
-export const FinancialRecordProvider({children,} :{children:React.ReactNode;}) =>{
+//We are now creating a component that will be our provider
+export const FinancialRecordProvider({children}:{children:React.ReactNode;}) =>{
     //Create states
     ///This is the method in react we use to create a State
     const [records,setRecord] = useState<FinancialRecord[]>([]);
 
-    //Create the function to  Create new record 
-const addRecord = (record:FinancialRecord) =>{
+    //Implement the function to  Create new record 
+const addRecord = async (record:FinancialRecord) =>{
+    //Use the fetch API
+   const response= await fetch("http://localhost:5000/financial-records/post",{method:"Post",
+        //When sending data to a web server, the data has to be a string.
+        body:JSON.stringify(record), //Convert a JavaScript object into a string with JSON.stringify()
+        headers: {
+            "Content-Type": "application/json",
+          },
+    })
+
+    try{
+        //If Response is success
+        if(response.ok){
+            const newRecord = await response.json();//Get the response in json format
+            setRecord(prev =>[...prev,newRecord]) //Update the records array
+        }
+
+
+    }catch(err){
+            console.log("No data Return from the promise")
+    }
+
+
 
 }
     return (<FinancialRecordContext.Provider value={{records,addRecord}}>
-        {""}
         {children}
     </FinancialRecordContext.Provider>)
-}
+};
 
 
 //Create a custom hook to use the provider and  make it accessable to children components
