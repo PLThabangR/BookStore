@@ -1,4 +1,4 @@
-import React, { Children, createContext, useState } from "react";
+import React, { Children, createContext, useContext, useState } from "react";
 
 //Create userRecord interface
 interface FinancialRecord{
@@ -39,4 +39,15 @@ const addRecord = (record:FinancialRecord) =>{
 }
 
 
-//Create a custom hook to use the provider
+//Create a custom hook to use the provider and  make it accessable to children components
+export const useFinancialRecords=()=>{
+    const context = useContext<FinancialRecordContextType| undefined>(FinancialRecordContext);
+
+    //Throw error if this hook is assed by outsider component
+    if(!context){
+        throw new Error(
+            "Use financialRecord must be used within Financial provider"
+        )
+    }
+    return context
+}
