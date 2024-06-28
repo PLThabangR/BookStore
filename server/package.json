@@ -1,0 +1,8 @@
+{
+  "name": "FinanceApp",
+  "version": "1.0.0",
+  "description": "Expanse tracker ",
+  "main": "app.tsx",
+  "author": "ThabangR",
+  "license": "MIT"
+}

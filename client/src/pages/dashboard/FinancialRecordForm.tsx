@@ -1,5 +1,6 @@
 import { useUser } from '@clerk/clerk-react';
 import { useState } from 'react';
+import { FloatingLabel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -14,7 +15,7 @@ const FinancialRecordForm = () => {
 
   //USe the clerk hook to get user id
   const {user} = useUser();
-  console.log(user.id)
+  
 
   //Handle submit method
   const handleSubmit = async(event:React.FormEvent<HTMLFormElement>)=>{
@@ -44,18 +45,24 @@ setPaymentMethod("")
   return (
     <>
          <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Description:</Form.Label>
+      <FloatingLabel
+      controlId='description'
+      label="Description"
+      className='mb-3'
+      >
         <Form.Control type="text" placeholder="Enter description" required value={description} onChange={(e)=>setDescrition(e.target.value)}/>
         
-      </Form.Group>
+        </FloatingLabel>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Amount:</Form.Label>
+        <FloatingLabel
+      controlId='amount'
+      label="Amount"
+      className='mb-3'
+      >
         <Form.Control type="number" placeholder="Amount" required value={amount} onChange={(e)=>setAmount(e.target.value)}/>
-      </Form.Group>
+      </FloatingLabel>
       
-      <Form.Select aria-label="Default select example" value={category} onChange={(e)=>setCategory(e.target.value)}>
+      <Form.Select aria-label="Default select example" value={category} onChange={(e)=>setCategory(e.target.value) defaultValue={}>
       <option>Category</option>
       <option value="Food">Food</option>
       <option value="Rent">Rent</option>
@@ -66,7 +73,7 @@ setPaymentMethod("")
     </Form.Select>
     <br></br>
    
-    <Form.Select aria-label="Default select example"value={paymentMethod} onChange={(e)=>setPaymentMethod(e.target.value)}>
+    <Form.Select aria-label="Default select example"value={paymentMethod} onChange={(e)=>setPaymentMethod(e.target.value)} defaultValue={"Cash"}>
       <option>Payment Method</option>
       <option value="Food">Credit Card</option>
       <option value="Rent">Cash</option>
