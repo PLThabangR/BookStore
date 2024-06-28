@@ -6,15 +6,26 @@ import FinancialRecordModel from "../Model/FinancialRecord";
 export const addRecord =async(req:Request,res:Response)=>{
  
     try{
+        console.log(new Date())
         //Get the new record from the body URL
         const newRecord= req.body
         //Create new record in the database
-        const record = await FinancialRecordModel.create({newRecord})
+        const record = new FinancialRecordModel(newRecord)
+        //Save the record
+        const saveRecord = await newRecord.save();
         //Give user responds
-        res.status(200).send("records")
+        res.status(200).json({
+            success:false,
+            message:"Record created",
+            saveRecord
+        })
 
     }catch(err){
-        res.status(500).send(err)
+        res.status(500).json({
+            success:false,
+            message:"Cannot Create new record",
+            err
+        })
     }
 
 }
@@ -39,6 +50,71 @@ try{
 }catch(err){
     res.status(500).send(err);
 }
+
+}
+
+export const updateRecords=async(req:Request,res:Response)=>{
+    try{
+       //find the record id
+       const id= req.params.id;
+
+        //Get the new record from the body URL
+        const newRecord= req.body
+        //Find and update record in the database
+        const record = new FinancialRecordModel(id,newRecord,{new:true})
+        
+        //If Id is not found
+        if(!record){
+            return res.status(404).json({
+                success:false,
+                message:`Record not found`
+            })
+        }
+        //Give user responds
+        res.status(200).json({
+            success:false,
+            message:"Record created",
+           record
+        })
+
+    }catch(err){
+        res.status(500).json({
+            success:false,
+            message:"Cannot Create new record",
+            err
+        })
+    }
+
+}
+
+export const deleteRecord=async(req:Request,res:Response)=>{
+    try{
+        //find the record id
+        const id= req.params.id;
+        //Find by id and delete
+        const record = await FinancialRecordModel.findByIdAndDelete(id)
+         
+         //If Id is not found
+         if(!record){
+             return res.status(404).json({
+                 success:false,
+                 message:`Record not found`
+             })
+         }
+         //Give user responds
+         res.status(200).json({
+             success:false,
+             message:"Record deleted",
+            record
+         })
+ 
+     }catch(err){
+         res.status(500).json({
+             success:false,
+             message:"Cannot Create new record",
+             err
+         })
+     }
 
 }
 

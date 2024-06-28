@@ -12,10 +12,10 @@ app.use(express.json())
 //MongoDB connection using vsCode url
 const  mongoURl :string = "mongodb+srv://thabang:thabang@finance.0snlwxc.mongodb.net/"
 
-// Using VsCode url to connect with mongo DB
-//mongoose.connect(mongoURl).then(()=> console.log("Connected to MONGODB")).catch((err)=>console.log("Cannot connect to MONGODB",err))
+// Using VsCode url to connect with mongo DBc
+mongoose.connect(mongoURl).then(()=> console.log("Connected to MONGODB")).catch((err)=>console.log("Cannot connect to MONGODB",err))
 
-app.use("/Financial-Records",financialRouter)
+app.use("/financial-records",financialRouter)
 app.listen(port,()=>{
     console.log(`Server running on por ${port}`)
 })
