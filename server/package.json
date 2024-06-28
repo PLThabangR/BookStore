@@ -2,9 +2,14 @@
   "name": "FinanceApp",
   "version": "1.0.0",
   "description": "Expanse tracker ",
-  "main": "app.tsx",
+  "main": "app.ts",
   "author": "ThabangR",
   "license": "MIT",
+  "scripts":{
+    "start":"node ./build/index.ts",
+    "build":"tsc -p .",
+    "dev":"nodemon ./src/App.ts"
+  },
   "dependencies": {
     "@types/express": "^4.17.21",
     "@types/mongoose": "^5.11.97",
