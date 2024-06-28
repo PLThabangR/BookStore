@@ -23,4 +23,4 @@ const financeRecoordSchema= new mongoose.Schema<FinancialRecord>({
 
 const FinancialRecordModel = mongoose.model<FinancialRecord>("FinancialRecord",financeRecoordSchema)
 
-export default FinancialRecord;
+export default FinancialRecordModel;
