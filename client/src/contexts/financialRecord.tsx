@@ -23,7 +23,7 @@ interface FinancialRecordContextType{
 export const FinancialRecordContext = createContext<FinancialRecordContextType| undefined>(undefined);
 
 //We are now creating a component that will be our provider
-export const FinancialRecordProvider({children}:{children:React.ReactNode;}) =>{
+export const FinancialRecordProvider:React.FC<{children:React.ReactNode}>=({children}) =>{
     //Create states
     ///This is the method in react we use to create a State
     const [records,setRecord] = useState<FinancialRecord[]>([]);
