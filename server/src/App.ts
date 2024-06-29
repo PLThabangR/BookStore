@@ -1,6 +1,7 @@
 import express,{Express} from "express";
 import mongoose from "mongoose";
 import { financialRouter } from "./Routes/financialRecord";
+import cors from "cors"
 
 //Instace of express
 const app : Express = express()
@@ -8,6 +9,7 @@ const port = process.env.PORT || 5000;
 
 //Middleware
 app.use(express.json())
+app.use(cors())
 
 //MongoDB connection using vsCode url
 const  mongoURl :string = "mongodb+srv://thabang:thabang@finance.0snlwxc.mongodb.net/"
