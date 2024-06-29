@@ -12,7 +12,7 @@ export const addRecord =async(req:Request,res:Response)=>{
         //Create new record in the database
         const record = new FinancialRecordModel(newRecord)
         //Save the record
-        const saveRecord = await newRecord.save();
+        const saveRecord = await record.save();
         //Give user responds
         res.status(200).json({
             success:false,
