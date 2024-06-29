@@ -1,27 +1,35 @@
 import { useFinancialRecords } from "../../contexts/financialRecord"
 import Table from 'react-bootstrap/Table';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 const FinancialList = () => {
   //use FinancialRecords
   const {records} = useFinancialRecords()
-  const navigate = useNavigate();
+  //use navigate
+  const navigate = useNavigate()
+//HandleUpdate
+const handleUpdate=(id:string)=>{
 
-  const updateRecords=()=>{
-    //Navigate to update /
-    navigate("/")
-  }
+      navigate(`updateRecord/${id}`)
+}
+ 
   //USe this function to render data
   const  tableData=records.map(a=>{ 
-    return <tr key={a._id}>
+    return (
+      <>
+    <tr key={a._id}>
+      
             <td>{a.description}</td>
             <td>{a.date}</td>
             <td>R{a.amount}</td>
             <td>{a.category}</td>
             <td>{a.paymentMethod}</td>  
-            <td> <Link to={`/updateTask/${a._id}`}><button type="button" className="btn btn-outline-info"onClick={()=>null}>Edit</button></Link></td>
-           <td> <button type="button" className="btn btn-outline-danger"onClick={()=>null}>Delete</button></td>
+            <td><button type="button" className="btn btn-outline-info" onClick={()=>{handleUpdate(a._id)}}>Edit</button></td>
+            <td> <button type="button" className="btn btn-outline-danger"onClick={()=>null}>Delete</button></td>
+           
           </tr>
+          </>
+          )
     
   })
   return (

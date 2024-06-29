@@ -16,7 +16,7 @@ interface FinancialRecordContextType{
     records:FinancialRecord[]; //This array holds multiple financial records
     addRecord:(record:FinancialRecord) => void //We use this function to send data to the backend it returns void
     updateRecord:(id:string,newRecord:FinancialRecord) => void //Its partial becase we wont send the id for mongo DB
-    deleteRecord:(id:string) => void
+   // deleteRecord:(id:string) => void
 }
 
 
@@ -80,7 +80,33 @@ const addRecord = async (record:FinancialRecord) =>{
 
 
 }
-    return (<FinancialRecordContext.Provider value={{records,addRecord}}>
+//Update Record
+const updateRecord=async(id:string,newRecord:FinancialRecord)=>{
+  //Return this if no user
+        if(!user) return "No user"
+    //Use the UpdateAPI
+ const response= await fetch(`http://localhost:5000/financial-records/updateRecordByID/${id}`,{method:"PUT",
+    //When sending data to a web server, the data has to be a string.
+    body:JSON.stringify(newRecord), //Convert a JavaScript object into a string with JSON.stringify()
+    headers: {
+        "Content-Type": "application/json",
+      },
+})
+//Handle the returned promise
+try{
+    //If Response is success
+    if(response.ok){
+        const newRecord = await response.json();//Get the response in json format
+        setRecord(newRecord)
+    }
+
+
+}catch(err){
+        console.log("No data Return from the promise")
+}
+   }
+
+    return (<FinancialRecordContext.Provider value={{records,addRecord,updateRecord}}>
         {children}
     </FinancialRecordContext.Provider>)
 };

@@ -12,6 +12,8 @@ const UpdateFinancialRecordForm = () => {
 
 // Get the userId param from the URL.
    const {id}=useParams()
+   //const id = id.toString()
+
    console.log(id)
 
    const navigate = useNavigate();
@@ -25,6 +27,9 @@ const UpdateFinancialRecordForm = () => {
 
   //Call the custom hook
   const {updateRecord}= useFinancialRecords()
+
+  
+ 
 
   //USe the clerk hook to get user id
   const {user} = useUser();
@@ -45,7 +50,7 @@ const UpdateFinancialRecordForm = () => {
     }
     console.log(newRecord)
     //pass info to the database by calling updateRecord function
-   // updateRecord(newRecord)
+   updateRecord(id,newRecord)
     clearForm()
     navigate("/")
 }

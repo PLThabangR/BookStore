@@ -59,11 +59,13 @@ export const updateRecords=async(req:Request,res:Response)=>{
     try{
        //find the record id
        const id= req.params.id;
+       //This link is going Throug
+       console.log("*****************")
 
         //Get the new record from the body URL
         const newRecord= req.body
         //Find and update record in the database
-        const record = new FinancialRecordModel(id,newRecord,{new:true})
+        const record = await FinancialRecordModel.findByIdAndUpdate(id,newRecord,{new:true,runValidators:true,useFindAndModify:false})
         
         //If Id is not found
         if(!record){
@@ -74,15 +76,15 @@ export const updateRecords=async(req:Request,res:Response)=>{
         }
         //Give user responds
         res.status(200).json({
-            success:false,
-            message:"Record created",
+            success:true,
+            message:"Record updated",
            record
         })
 
     }catch(err){
         res.status(500).json({
             success:false,
-            message:"Cannot Create new record",
+            message:"Cannot update record",
             err
         })
     }

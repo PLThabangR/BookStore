@@ -18,7 +18,7 @@ function App() {
     <Routes>
       <Route element={<SignIn/>} path='/sign-in'/>
       <Route element={<Dashboard/>} path='/'/>
-      <Route element={<UpdateFinancialRecordForm/>}  path="/updateTask/:id"/>
+      <Route element={<UpdateFinancialRecordForm/>}  path="/updateRecord/:id"/>
     </Routes>
 
     </div>
