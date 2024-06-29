@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
+import { useUser } from "@clerk/clerk-react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 //Create userRecord interface
 interface FinancialRecord{
@@ -24,10 +25,34 @@ export const FinancialRecordContext = createContext<FinancialRecordContextType| 
 
 //We are now creating a component that will be our provider
 export const FinancialRecordProvider:React.FC<{children:React.ReactNode}>=({children}) =>{
+    //Grab the user id from Clerk
+   const {user} =  useUser()
     //Create states
     ///This is the method in react we use to create a State
     const [records,setRecord] = useState<FinancialRecord[]>([]);
 
+    //Ftech user records by ID
+    const fetchUserRecordById =async()=>{
+        //Return this if no user
+        if(!user) return "No user"
+          console.log(user?.firstName)      
+        const response = await fetch(`http://localhost:5000/financial-records/getRecordsByUserId/${user?.id}`) 
+
+        try{
+            if(response.ok){
+                const records = await response.json()
+                setRecord(records)
+                console.log(records)
+            }
+        }catch(e){
+            console.log("Could not fetch Data",e)
+        }
+    }
+
+    //We want this function to be called on render
+    useEffect(()=>{
+        fetchUserRecordById()
+    },[user])
     //Implement the function to  Create new record 
 const addRecord = async (record:FinancialRecord) =>{
     //Use the fetch API

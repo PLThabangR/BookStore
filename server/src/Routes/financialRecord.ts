@@ -6,7 +6,7 @@ import { addRecord, getRecords } from "../Controller/FinancialRecord";
 const router = express.Router()
 
 router.post("/post",addRecord)
-router.get("/getAllByUserId/:userID",getRecords)
+router.get("/getRecordsByUserId/:userID",getRecords)
 router.put("/update")
 
 

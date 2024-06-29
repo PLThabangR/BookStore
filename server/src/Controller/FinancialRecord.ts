@@ -33,8 +33,10 @@ export const addRecord =async(req:Request,res:Response)=>{
 export const getRecords =async(req:Request,res:Response)=>{
     
 try{
+    
     //Grab the user ID
     const userID = req.params.userID
+    console.log("User id",userID)
     //Find all record in the financial model by user id
     const records = await FinancialRecordModel.find({userId:userID})
    //If the array is eqauls to zero 
