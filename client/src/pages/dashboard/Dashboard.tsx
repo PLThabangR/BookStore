@@ -9,8 +9,11 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
         <div className="div"><h1>Welcome {user?.firstName}! here are your finances</h1></div>
-        <FinancialRecordForm/>
-        <FinancialList/>
+       
+       <FinancialRecordForm/>
+       <FinancialList/>
+      
+       
        
     
     </div>

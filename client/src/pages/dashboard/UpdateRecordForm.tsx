@@ -4,18 +4,27 @@ import { FloatingLabel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useFinancialRecords } from '../../contexts/financialRecord';
+import { useParams,useNavigate } from 'react-router-dom';
 
 
 
-const FinancialRecordForm = () => {
+const UpdateFinancialRecordForm = () => {
+
+// Get the userId param from the URL.
+   const {id}=useParams()
+   console.log(id)
+
+   const navigate = useNavigate();
+
   //Setup the state
   const [description,setDescrition]=useState<string>('')
   const [amount,setAmount]=useState<string>('')
   const [category,setCategory]=useState<string>('')
   const [paymentMethod,setPaymentMethod]=useState<string>('')
+ 
 
   //Call the custom hook
-  const {addRecord}= useFinancialRecords()
+  const {updateRecord}= useFinancialRecords()
 
   //USe the clerk hook to get user id
   const {user} = useUser();
@@ -35,9 +44,10 @@ const FinancialRecordForm = () => {
       paymentMethod: paymentMethod
     }
     console.log(newRecord)
-    //pass info to the database by calling addRecord function
-    addRecord(newRecord)
+    //pass info to the database by calling updateRecord function
+   // updateRecord(newRecord)
     clearForm()
+    navigate("/")
 }
 
 const clearForm =()=>{
@@ -48,6 +58,7 @@ setPaymentMethod("")
 }
   return (
     <>
+    <div className="div"><h1>Update Record</h1></div>
          <Form onSubmit={handleSubmit}>
       <FloatingLabel
       controlId='description'
@@ -90,7 +101,7 @@ setPaymentMethod("")
       <br></br>
 
       <Button className="btn btn-success" type="submit">
-        Add record
+        Update record
       </Button>
     </Form>
     <br></br>
@@ -98,4 +109,4 @@ setPaymentMethod("")
   )
 }
 
-export default FinancialRecordForm
+export default UpdateFinancialRecordForm

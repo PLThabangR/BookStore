@@ -15,8 +15,8 @@ interface FinancialRecord{
 interface FinancialRecordContextType{
     records:FinancialRecord[]; //This array holds multiple financial records
     addRecord:(record:FinancialRecord) => void //We use this function to send data to the backend it returns void
-  //  updateRecord:(id:string,newRecord:FinancialRecord) => void //Its partial becase we wont send the id for mongo DB
-   // deleteRecord:(id:string) => void
+    updateRecord:(id:string,newRecord:FinancialRecord) => void //Its partial becase we wont send the id for mongo DB
+    deleteRecord:(id:string) => void
 }
 
 
