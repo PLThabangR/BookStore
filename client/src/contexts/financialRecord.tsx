@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 //Create userRecord interface
 interface FinancialRecord{
-    id?:string; //This id comes from the mongoDB thats y we make it optional
+    _id:string; //This id comes from the mongoDB thats y we make it optional
     userId:string;
     date:Date;
     description:string;
@@ -35,14 +35,14 @@ export const FinancialRecordProvider:React.FC<{children:React.ReactNode}>=({chil
     const fetchUserRecordById =async()=>{
         //Return this if no user
         if(!user) return "No user"
-          console.log(user?.firstName)      
+          //console.log(user?.firstName)      
         const response = await fetch(`http://localhost:5000/financial-records/getRecordsByUserId/${user?.id}`) 
 
         try{
             if(response.ok){
                 const records = await response.json()
                 setRecord(records)
-                console.log(records)
+                console.log("User return",records)
             }
         }catch(e){
             console.log("Could not fetch Data",e)
@@ -52,6 +52,7 @@ export const FinancialRecordProvider:React.FC<{children:React.ReactNode}>=({chil
     //We want this function to be called on render
     useEffect(()=>{
         fetchUserRecordById()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[user])
     //Implement the function to  Create new record 
 const addRecord = async (record:FinancialRecord) =>{
