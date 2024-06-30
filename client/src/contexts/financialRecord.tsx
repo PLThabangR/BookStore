@@ -26,6 +26,9 @@ export const FinancialRecordContext = createContext<FinancialRecordContextType| 
 
 //We are now creating a component that will be our provider
 export const FinancialRecordProvider:React.FC<{children:React.ReactNode}>=({children}) =>{
+    // Set up a piece of state, so that we have
+  // a way to trigger a re-render.
+  const [random, setRandom] = useState(Math.random());
     //Grab the user id from Clerk
    const {user} =  useUser()
     //Create states
@@ -56,7 +59,7 @@ export const FinancialRecordProvider:React.FC<{children:React.ReactNode}>=({chil
     useEffect(()=>{
         fetchUserRecordById()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[user])
+    },[user,random])
     //Implement the function to  Create new record 
 const addRecord = async (record:FinancialRecord) =>{
     //Use the fetch API
@@ -71,13 +74,14 @@ const addRecord = async (record:FinancialRecord) =>{
     try{
         //If Response is success
         if(response.ok){
-            toast.success("Record Created")
             const newRecord = await response.json();//Get the response in json format
             setRecord(prev =>[...prev,newRecord]) //Update the records array
             toast.success("Record Created")
+            setRandom(Math.random())
         }
     }catch(err){
             toast.error("Cannot Create new record")
+            setRandom(Math.random())
     }
 }
 //Update Record
@@ -113,12 +117,14 @@ try{
     
 
         toast.success("Record Updated")
+        setRandom(Math.random())
     }
 
 
 }catch(err){
       
         toast.error("No data Return from the promise")
+        setRandom(Math.random())
 }
    }
     //Delete Record
@@ -133,11 +139,13 @@ try{
         const deleteRecord = await response.json();//Get the response in json format
         setRecord((prev)=>prev.filter(record=> record._id!==deleteRecord._id)) //Return values which are not equal to de deleted
         toast.success("Record Deleted")
+        setRandom(Math.random())
     }
 
 
 }catch(err){
     toast.success("Record cannot be deleted")
+    setRandom(Math.random())
 }
    }
 

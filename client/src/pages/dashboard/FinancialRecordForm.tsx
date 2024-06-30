@@ -45,7 +45,7 @@ const FinancialRecordForm = () => {
     console.log(newRecord)
     //pass info to the database by calling addRecord function
     addRecord(newRecord)
-    window.location.reload();
+   // window.location.reload();
     clearForm()
 }
 
