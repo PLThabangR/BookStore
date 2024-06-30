@@ -3,12 +3,14 @@ import './App.css'
 import { Route,Routes } from 'react-router-dom'
 import SignIn from './pages/auth/SignIn'
 import Dashboard from './pages/dashboard/Dashboard'
-import { FinancialRecordProvider } from './contexts/financialRecord'
+import { FinancialRecordProvider, useFinancialRecords } from './contexts/financialRecord'
 import UpdateFinancialRecordForm from './pages/dashboard/UpdateRecordForm'
 
 
 function App() {
   
+
+
 
   return (
     <>
@@ -20,7 +22,7 @@ function App() {
       <Route element={<Dashboard/>} path='/'/>
       <Route element={<UpdateFinancialRecordForm/>}  path="/updateRecord/:id"/>
     </Routes>
-
+    
     </div>
     </FinancialRecordProvider>
     
