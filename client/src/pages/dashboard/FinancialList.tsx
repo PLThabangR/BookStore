@@ -5,27 +5,33 @@ import { Link,useNavigate } from 'react-router-dom';
 
 const FinancialList = () => {
   //use FinancialRecords
-  const {records} = useFinancialRecords()
+  const {records,deleteRecord} = useFinancialRecords()
   //use navigate
   const navigate = useNavigate()
 //HandleUpdate
-const handleUpdate=(id:string)=>{
+const handleUpdate=(id:any)=>{
 
       navigate(`updateRecord/${id}`)
 }
  
+//Handle delete
+const handleDelete=(id:any)=>{
+  deleteRecord(id)
+  
+}
   //USe this function to render data
   const  tableData=records.map((a,i)=>{ 
+    const R:string ="R"
     return (
     <tr key={i}>
       <td>{i+1}</td>
            <td>{a.description}</td>
             <td>{a.date}</td>
-            <td>R{a.amount}</td>
+            <td>{a.amount}</td>
             <td>{a.paymentMethod}</td>  
             <td>{a.category}</td>
             <td><button type="button" className="btn btn-outline-info" onClick={()=>{handleUpdate(a._id)}}>Edit</button></td>
-            <td> <button type="button" className="btn btn-outline-danger">Delete</button></td>
+            <td> <button type="button" className="btn btn-outline-danger"onClick={()=>{handleDelete(a._id)}}>Delete</button></td>
           </tr>
           )
     
@@ -44,8 +50,7 @@ const handleUpdate=(id:string)=>{
           </tr>
         </thead>
         <tbody>
-          {records.length> 0 ? tableData : <><h1>No records</h1></>}
-        
+          {records && tableData }
         </tbody>
       </Table>
       

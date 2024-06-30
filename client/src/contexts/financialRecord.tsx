@@ -44,7 +44,7 @@ export const FinancialRecordProvider:React.FC<{children:React.ReactNode}>=({chil
                 const records = await response.json()
                 setRecord(records)
                 console.log("User return",records)
-                toast.success("Fetching records")
+               
             }
            
         }catch(e){
@@ -71,6 +71,7 @@ const addRecord = async (record:FinancialRecord) =>{
     try{
         //If Response is success
         if(response.ok){
+            toast.success("Record Created")
             const newRecord = await response.json();//Get the response in json format
             setRecord(prev =>[...prev,newRecord]) //Update the records array
             toast.success("Record Created")
@@ -80,7 +81,8 @@ const addRecord = async (record:FinancialRecord) =>{
     }
 }
 //Update Record
-const updateRecord=async(id:string,newRecord:FinancialRecord)=>{
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const updateRecord=async(id:any,newRecord:FinancialRecord)=>{
   //Return this if no user
         if(!user) return "No user"
     //Use the UpdateAPI
@@ -95,6 +97,7 @@ const updateRecord=async(id:string,newRecord:FinancialRecord)=>{
 try{
     //If Response is success
     if(response.ok){
+        console.log("Are we reaching here")
         const newRecord = await response.json();//Get the response in json format
         setRecord(newRecord)
         toast.success("Record Updated")
@@ -115,8 +118,8 @@ try{
 try{
     //If Response is success
     if(response.ok){
-        const newRecord = await response.json();//Get the response in json format
-        setRecord(newRecord) //Update the records array
+        const deleteRecord = await response.json();//Get the response in json format
+        setRecord((prev)=>prev.filter(record=> record._id!==deleteRecord._id)) //Return values which are not equal to de deleted
         toast.success("Record Deleted")
     }
 
