@@ -94,9 +94,9 @@ export const updateRecords=async(req:Request,res:Response)=>{
 export const deleteRecord=async(req:Request,res:Response)=>{
     try{
         //find the record id
-        const id= req.params.id;
+      //  const id= req.params.id;
         //Find by id and delete
-        const record = await FinancialRecordModel.findByIdAndDelete(id)
+        const record = await FinancialRecordModel.findById(req.params.id)
          
          //If Id is not found
          if(!record){
@@ -105,9 +105,11 @@ export const deleteRecord=async(req:Request,res:Response)=>{
                  message:`Record not found`
              })
          }
+         //Deleted the record and return the updated record
+         await record.deleteOne();
          //Give user responds
          res.status(200).json({
-             success:false,
+             success:true,
              message:"Record deleted",
             record
          })

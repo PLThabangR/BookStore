@@ -1,11 +1,12 @@
 import { useUser } from "@clerk/clerk-react";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import {toast} from "react-hot-toast";
 
 //Create userRecord interface
 interface FinancialRecord{
-    _id:string; //This id comes from the mongoDB thats y we make it optional
+    _id?:string; //This id comes from the mongoDB thats y we make it optional
     userId:string;
-    date:Date;
+    date:string;
     description:string;
     amount:number
     category:string;
@@ -16,7 +17,7 @@ interface FinancialRecordContextType{
     records:FinancialRecord[]; //This array holds multiple financial records
     addRecord:(record:FinancialRecord) => void //We use this function to send data to the backend it returns void
     updateRecord:(id:string,newRecord:FinancialRecord) => void //Its partial becase we wont send the id for mongo DB
-   // deleteRecord:(id:string) => void
+   deleteRecord:(id:string) => void
 }
 
 
@@ -29,7 +30,7 @@ export const FinancialRecordProvider:React.FC<{children:React.ReactNode}>=({chil
    const {user} =  useUser()
     //Create states
     ///This is the method in react we use to create a State
-    const [records,setRecord] = useState<FinancialRecord[]>([]);
+    const [records,setRecord] = useState<FinancialRecord[]>([]);//Initializing emty array
 
     //Ftech user records by ID
     const fetchUserRecordById =async()=>{
@@ -43,7 +44,9 @@ export const FinancialRecordProvider:React.FC<{children:React.ReactNode}>=({chil
                 const records = await response.json()
                 setRecord(records)
                 console.log("User return",records)
+                toast.success("")
             }
+           
         }catch(e){
             console.log("Could not fetch Data",e)
         }
@@ -76,9 +79,6 @@ const addRecord = async (record:FinancialRecord) =>{
     }catch(err){
             console.log("No data Return from the promise")
     }
-
-
-
 }
 //Update Record
 const updateRecord=async(id:string,newRecord:FinancialRecord)=>{
@@ -98,6 +98,24 @@ try{
     if(response.ok){
         const newRecord = await response.json();//Get the response in json format
         setRecord(newRecord)
+    }
+
+
+}catch(err){
+        console.log("No data Return from the promise")
+}
+   }
+    //Delete Record
+   const deleteRecord = async (id:string)=>{
+      //Use the fetch API
+   const response= await fetch(`http://localhost:5000/financial-records/deleteRecord/${id}`,{method:"DELETE",
+})
+
+try{
+    //If Response is success
+    if(response.ok){
+        const newRecord = await response.json();//Get the response in json format
+        setRecord(response) //Update the records array
     }
 
 

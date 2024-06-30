@@ -20,14 +20,22 @@ const FinancialRecordForm = () => {
   //USe the clerk hook to get user id
   const {user} = useUser();
   
-
+  function getDate() {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    return `${month}/${date}/${year}`;
+  }
   //Handle submit method
   const handleSubmit = async(event:React.FormEvent<HTMLFormElement>)=>{
     event.preventDefault()
+   const finalDate = getDate()
+
     //Data
     const newRecord={
       userId:user?.id ?? "", //If this Id is empty we put a empty string
-      date: new Date(),
+      date: finalDate,
       description: description,
       //Convert amount to a float
       amount:parseFloat(amount),
@@ -37,6 +45,7 @@ const FinancialRecordForm = () => {
     console.log(newRecord)
     //pass info to the database by calling addRecord function
     addRecord(newRecord)
+    window.location.reload();
     clearForm()
 }
 

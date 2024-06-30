@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 //Create userRecord interface
 interface FinancialRecord{
     userId:string;
-    date:Date;
+    date:String;
     description:string;
     amount:number
     category:string;
@@ -12,7 +12,7 @@ interface FinancialRecord{
 //Create Schema define type in a mongoose way
 const financeRecoordSchema= new mongoose.Schema<FinancialRecord>({
     userId:{type:String,required:true},
-    date:{type:Date,required:true},
+    date:{type:String,required:true},
     description:{type:String, required:true},
     amount:{type:Number,required:true},
     category:{type:String,required:true},
