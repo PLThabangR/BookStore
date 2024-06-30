@@ -99,7 +99,19 @@ try{
     if(response.ok){
         console.log("Are we reaching here")
         const newRecord = await response.json();//Get the response in json format
-        setRecord(newRecord)
+      //Update the state to reflect the new record
+      //Set the record by mapping to current value  is equal to the Id of the argument then return newRecord if not return previous record
+        setRecord((prev)=>prev.map(
+            (record)=>{
+                if(record._id===id){
+                    return newRecord
+                }else{
+                     return record   
+                }
+            }
+        ))
+    
+
         toast.success("Record Updated")
     }
 
