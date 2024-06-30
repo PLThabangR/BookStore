@@ -44,11 +44,11 @@ export const FinancialRecordProvider:React.FC<{children:React.ReactNode}>=({chil
                 const records = await response.json()
                 setRecord(records)
                 console.log("User return",records)
-                toast.success("")
+                toast.success("Fetching records")
             }
            
         }catch(e){
-            console.log("Could not fetch Data",e)
+            toast.error("Cannot fetch records");
         }
     }
 
@@ -73,11 +73,10 @@ const addRecord = async (record:FinancialRecord) =>{
         if(response.ok){
             const newRecord = await response.json();//Get the response in json format
             setRecord(prev =>[...prev,newRecord]) //Update the records array
+            toast.success("Record Created")
         }
-
-
     }catch(err){
-            console.log("No data Return from the promise")
+            toast.error("Cannot Create new record")
     }
 }
 //Update Record
@@ -98,11 +97,13 @@ try{
     if(response.ok){
         const newRecord = await response.json();//Get the response in json format
         setRecord(newRecord)
+        toast.success("Record Updated")
     }
 
 
 }catch(err){
-        console.log("No data Return from the promise")
+      
+        toast.error("No data Return from the promise")
 }
    }
     //Delete Record
@@ -115,16 +116,17 @@ try{
     //If Response is success
     if(response.ok){
         const newRecord = await response.json();//Get the response in json format
-        setRecord(response) //Update the records array
+        setRecord(newRecord) //Update the records array
+        toast.success("Record Deleted")
     }
 
 
 }catch(err){
-        console.log("No data Return from the promise")
+    toast.success("Record cannot be deleted")
 }
    }
 
-    return (<FinancialRecordContext.Provider value={{records,addRecord,updateRecord}}>
+    return (<FinancialRecordContext.Provider value={{records,addRecord,updateRecord,deleteRecord}}>
         {children}
     </FinancialRecordContext.Provider>)
 };
