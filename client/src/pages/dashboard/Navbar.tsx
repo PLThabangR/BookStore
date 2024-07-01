@@ -1,12 +1,12 @@
 
-import { SignedIn,UserButton,useUser } from '@clerk/clerk-react';
+import { SignedIn,UserButton } from '@clerk/clerk-react';
 import { Link } from 'react-router-dom';
-import {toast} from "react-hot-toast";
+
 
 
 const Navbar = () => {
      //Grab the user id from Clerk
-   const {user} =  useUser();
+   
   
    
   

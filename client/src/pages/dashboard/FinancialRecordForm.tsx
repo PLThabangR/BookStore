@@ -77,11 +77,13 @@ setPaymentMethod("")
       
       <Form.Select aria-label="Default select example" value={category} onChange={(e)=>setCategory(e.target.value)}>
       <option>Category</option>
-      <option value="Food">Food</option>
-      <option value="Rent">Rent</option>
-      <option value="Salary">Salary</option>
-      <option value="Utilities">Utilities</option>
+      <option value="Food">Shopping</option>
+      <option value="Rent">Bills & Utilities</option>
+      <option value="Utilities">Education</option>
       <option value="Entertainment">Entertainment</option>
+      <option value="Entertainment">Transport</option>
+      <option value="Other">Food</option>
+      <option value="Other">Health & Wellness</option>
       <option value="Other">Other</option>
     </Form.Select>
     <br></br>

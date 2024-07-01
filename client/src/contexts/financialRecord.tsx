@@ -40,7 +40,7 @@ export const FinancialRecordProvider:React.FC<{children:React.ReactNode}>=({chil
         //Return this if no user
         if(!user) return "No user"
           //console.log(user?.firstName)      
-        const response = await fetch(`http://localhost:5000/financial-records/getRecordsByUserId/${user?.id}`) 
+        const response = await fetch(`https://tr-tech-finance.onrender.com/financial-records/getRecordsByUserId/${user?.id}`) 
 
         try{
             if(response.ok){
@@ -63,7 +63,7 @@ export const FinancialRecordProvider:React.FC<{children:React.ReactNode}>=({chil
     //Implement the function to  Create new record 
 const addRecord = async (record:FinancialRecord) =>{
     //Use the fetch API
-   const response= await fetch("http://localhost:5000/financial-records/post",{method:"Post",
+   const response= await fetch("https://tr-tech-finance.onrender.com/financial-records/post",{method:"Post",
         //When sending data to a web server, the data has to be a string.
         body:JSON.stringify(record), //Convert a JavaScript object into a string with JSON.stringify()
         headers: {
@@ -85,12 +85,11 @@ const addRecord = async (record:FinancialRecord) =>{
     }
 }
 //Update Record
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const updateRecord=async(id:any,newRecord:FinancialRecord)=>{
+const updateRecord=async(id:string,newRecord:FinancialRecord)=>{
   //Return this if no user
         if(!user) return "No user"
     //Use the UpdateAPI
- const response= await fetch(`http://localhost:5000/financial-records/updateRecordByID/${id}`,{method:"PUT",
+ const response= await fetch(`https://tr-tech-finance.onrender.com/financial-records/updateRecordByID/${id}`,{method:"PUT",
     //When sending data to a web server, the data has to be a string.
     body:JSON.stringify(newRecord), //Convert a JavaScript object into a string with JSON.stringify()
     headers: {
@@ -130,7 +129,7 @@ try{
     //Delete Record
    const deleteRecord = async (id:string)=>{
       //Use the fetch API
-   const response= await fetch(`http://localhost:5000/financial-records/deleteRecord/${id}`,{method:"DELETE",
+   const response= await fetch(`https://tr-tech-finance.onrender.com/financial-records/deleteRecord/${id}`,{method:"DELETE",
 })
 
 try{

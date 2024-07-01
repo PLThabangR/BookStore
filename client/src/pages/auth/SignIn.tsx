@@ -1,5 +1,5 @@
-import {SignedIn,SignedOut,SignInButton,SignOutButton,UserButton,SignUpButton, RedirectToSignIn} from "@clerk/clerk-react"
-import { Navigate, Navigator } from "react-router-dom"
+import {SignedIn,SignedOut,SignInButton,SignUpButton} from "@clerk/clerk-react"
+import { Navigate } from "react-router-dom"
 import "./auth.css"
 
 const SignIn = () => {

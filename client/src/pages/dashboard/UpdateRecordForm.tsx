@@ -57,6 +57,7 @@ const UpdateFinancialRecordForm = () => {
       paymentMethod: paymentMethod
     }
     console.log(newRecord)
+  
     //pass info to the database by calling updateRecord function
    updateRecord(id,newRecord)
     clearForm()

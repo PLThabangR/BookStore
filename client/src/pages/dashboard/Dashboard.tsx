@@ -2,7 +2,7 @@ import {useUser} from "@clerk/clerk-react"
 import FinancialList from "./FinancialList"
 import FinancialRecordForm from "./FinancialRecordForm"
 import { useFinancialRecords } from "../../contexts/financialRecord"
-import Navbar from "./Navbar"
+
 
 
 const Dashboard = () => {
@@ -22,7 +22,7 @@ const Dashboard = () => {
        
        <FinancialRecordForm/>
        <FinancialList/>
-      <p>Total amount spent :<b> R{totalAmount} </b> </p>
+      <p>Total expanses :<b> R{totalAmount} </b> </p>
        
        
     

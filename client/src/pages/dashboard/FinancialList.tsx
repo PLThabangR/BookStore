@@ -1,6 +1,6 @@
 import { useFinancialRecords } from "../../contexts/financialRecord"
 import Table from 'react-bootstrap/Table';
-import { Link,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const FinancialList = () => {

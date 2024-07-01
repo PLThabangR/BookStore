@@ -3,7 +3,7 @@ import './App.css'
 import { Route,Routes } from 'react-router-dom'
 import SignIn from './pages/auth/SignIn'
 import Dashboard from './pages/dashboard/Dashboard'
-import { FinancialRecordProvider, useFinancialRecords } from './contexts/financialRecord'
+import { FinancialRecordProvider } from './contexts/financialRecord'
 import UpdateFinancialRecordForm from './pages/dashboard/UpdateRecordForm'
 import Navbar from './pages/dashboard/Navbar';
 import { SignedIn } from '@clerk/clerk-react';
