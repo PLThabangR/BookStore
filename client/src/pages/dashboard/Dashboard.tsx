@@ -2,6 +2,7 @@ import {useUser} from "@clerk/clerk-react"
 import FinancialList from "./FinancialList"
 import FinancialRecordForm from "./FinancialRecordForm"
 import { useFinancialRecords } from "../../contexts/financialRecord"
+import Navbar from "./Navbar"
 
 
 const Dashboard = () => {
@@ -9,12 +10,14 @@ const Dashboard = () => {
     const {user} = useUser()
     const {records} = useFinancialRecords()
     let totalAmount=0;
-    const totalMonthly = records.forEach((record)=>{
+     records.forEach((record)=>{
       totalAmount+=record.amount;
     })
      
   return (
     <div className="dashboard-container">
+      
+      
         <div className="div"><h1>Welcome {user?.firstName}! here are your finances</h1></div>
        
        <FinancialRecordForm/>

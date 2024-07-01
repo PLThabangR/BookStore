@@ -21,7 +21,7 @@ const handleDelete=(id:any)=>{
 }
   //USe this function to render data
   const  tableData=records.map((a,i)=>{ 
-    const R:string ="R"
+
     return (
     <tr key={i}>
       <td>{i+1}</td>
