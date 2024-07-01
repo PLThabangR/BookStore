@@ -24,7 +24,7 @@ const handleDelete=(id:any)=>{
 
     return (
     <tr key={i}>
-      <td>{i+1}</td>
+      
            <td>{a.description}</td>
             <td>{a.date}</td>
             <td>{a.amount}</td>
@@ -38,10 +38,10 @@ const handleDelete=(id:any)=>{
   })
   return (
     <>
-    <Table className="table table-striped" >
+    <Table className="table table-striped " >
         <thead>
           <tr>
-            <th>#</th>
+           
             <th>Description</th>
             <th>Date</th>
             <th>Amount</th>
