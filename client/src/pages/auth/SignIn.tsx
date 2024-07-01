@@ -16,7 +16,7 @@ const SignIn = () => {
             
         </SignedOut>
         <SignedIn>
-            <Navigate  to="/"/>
+            <Navigate  to="/dashboard"/>
         </SignedIn>
     </div>
 

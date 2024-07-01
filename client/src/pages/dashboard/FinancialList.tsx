@@ -11,7 +11,7 @@ const FinancialList = () => {
 //HandleUpdate
 const handleUpdate=(id:any)=>{
 
-      navigate(`updateRecord/${id}`)
+      navigate(`/dashboard/updateRecord/${id}`)
 }
  
 //Handle delete

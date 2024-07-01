@@ -30,9 +30,9 @@ function App() {
       
       <Toaster/>
     <Routes>
-      <Route element={<SignIn/>} path='/sign-in'/>
-      <Route element={<Dashboard/>} path='/'/>
-      <Route element={<UpdateFinancialRecordForm/>}  path="/updateRecord/:id"/>
+      <Route element={<SignIn/>} path='/'/>
+      <Route element={<Dashboard/>} path='/dashboard'/>
+      <Route element={<UpdateFinancialRecordForm/>}  path="/dashboard/updateRecord/:id"/>
      
     </Routes>
     

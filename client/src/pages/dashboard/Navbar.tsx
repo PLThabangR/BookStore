@@ -14,11 +14,11 @@ const Navbar = () => {
     <>
 <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid">
-  <Link to="/"> <span className="navbar-brand mb-0 h1"> 
+  <Link to="/dashboard"> <span className="navbar-brand mb-0 h1"> 
     Dashboard
     </span></Link>
    
-   <div> <SignedIn><UserButton showName afterSignOutUrl="/sign-in"/></SignedIn></div>
+   <div> <SignedIn><UserButton showName afterSignOutUrl="/"/></SignedIn></div>
 
   </div>
 </nav>

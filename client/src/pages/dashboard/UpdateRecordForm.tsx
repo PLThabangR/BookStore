@@ -61,7 +61,7 @@ const UpdateFinancialRecordForm = () => {
     //pass info to the database by calling updateRecord function
    updateRecord(id,newRecord)
     clearForm()
-    navigate("/")//Return to home page
+    navigate("/dashboard")//Return to home page
 }
 
 const clearForm =()=>{
