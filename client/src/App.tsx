@@ -16,9 +16,9 @@ function App() {
 
   return (
     <>
-    <div className="background">
+    <div className="container">
     <FinancialRecordProvider>
-    <h1>Money Management Platform </h1>
+   
     <div>
 <SignedIn>
 <Navbar/>
