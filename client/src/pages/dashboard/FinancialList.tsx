@@ -1,6 +1,7 @@
 import { useFinancialRecords } from "../../contexts/financialRecord"
 import Table from 'react-bootstrap/Table';
 import { useNavigate } from 'react-router-dom';
+import { ReactTableScroll } from 'react-table-scroll';
 
 
 const FinancialList = () => {
@@ -38,7 +39,8 @@ const handleDelete=(id:any)=>{
   })
   return (
     <>
-    <Table className="table table-striped " >
+    <ReactTableScroll>
+    <Table className="table table-striped ">
         <thead>
           <tr>
            
@@ -53,7 +55,7 @@ const handleDelete=(id:any)=>{
           {records && tableData }
         </tbody>
       </Table>
-      
+      </ReactTableScroll>
     
     </>
   )

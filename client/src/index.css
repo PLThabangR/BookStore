@@ -14,6 +14,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+table{
+  overflow: auto;
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid transparent;
+}
 
 
 h1 {
